@@ -1,14 +1,6 @@
 #!/usr/bin/env node
 
 var
-  Liftoff = require('liftoff'),
-  Prodio = new Liftoff({
-    name: 'Prodio',
-    configName: '.prodio',
-    cwdFlag: 'cwd',
-    configPathFlag: 'config',
-    preloadFlag: 'require'
-  }),
   path = require('path'),
   settings = require('commander');
 
@@ -49,4 +41,6 @@ settings.unknownOption = (function(){
 
 settings.parse(process.argv);
 
-console.log(settings.args);
+var command = settings.args[0];
+
+console.log(settings, command);
