@@ -8,7 +8,7 @@
   },
   "bin": {
     "prodio": "prodio.js"
-  }
+  },
   "keywords": [
     "Project",
     "Management"
@@ -28,5 +28,6 @@
   "bugs": {
     "url": "https://github.com/prodio-pm/cli/issues"
   },
+  "preferGlobal": true,
   "homepage": "https://github.com/prodio-pm/cli"
 }
