@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var
   Liftoff = require('liftoff'),
   Prodio = new Liftoff({
