@@ -16,5 +16,14 @@
     "semver": "^4.0.3"
   },
   "author": "Jeremy Darling <jeremy.darling@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/prodio-pm/cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/prodio-pm/cli/issues"
+  },
+  "homepage": "https://github.com/prodio-pm/cli"
 }
