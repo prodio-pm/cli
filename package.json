@@ -1,0 +1,20 @@
+{
+  "name": "prodio-cli",
+  "version": "0.0.1",
+  "description": "Command Line Interface for Prodio",
+  "main": "prodio.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Project",
+    "Management"
+  ],
+  "dependencies": {
+    "commander": "~2.1.0",
+    "liftoff": "^0.9.6",
+    "semver": "^4.0.3"
+  },
+  "author": "Jeremy Darling <jeremy.darling@gmail.com>",
+  "license": "MIT"
+}
