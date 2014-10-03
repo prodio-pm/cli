@@ -43,19 +43,19 @@ settings
 
 var handlers = {};
 var fs = require('fs');
-var stat = fs.lstatSync('./commands');
+var stat = fs.lstatSync(__dirname+'/commands');
 if(!stat.isDirectory()){
   console.error('No commands registered!  Please reinstall prodio-cli.');
   process.exit(1);
 }
-fs.readdir('./commands', function(err, files){
+fs.readdir(__dirname+'/commands', function(err, files){
   if(err){
     console.error(err);
     process.exit(1);
   }
   files.forEach(function(file){
-    var handler = require('./commands/'+file);
-    var name = handler.name||file.replace(/\.js$/, '');
+    var handler = require(__dirname+'/commands/'+file);
+    var name = handler.command||file.replace(/\.js$/, '');
     handlers[name]=handler;
     settings.option(name, handler.description);
   });
