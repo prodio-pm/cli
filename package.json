@@ -15,6 +15,7 @@
   ],
   "dependencies": {
     "commander": "~2.1.0",
+    "request": "^2.45.0",
     "semver": "^4.0.3"
   },
   "author": "Jeremy Darling <jeremy.darling@gmail.com>",
