@@ -25,6 +25,7 @@ var find = function(){
       items = items[items.root];
       items.forEach(function(item){
         console.log('Name: ', item.name);
+        logif('  ID: ', item._id);
         logif('  Version: ', item.version);
         logif('  Type: ', item.type);
         logif('  Description: ', item.description);
