@@ -42,8 +42,18 @@ prodio set username jdarling
 prodio set global username jdarling
 ```
 
+prodio pull
+-----------
+
+prodio pull
+
+prodio push
+-----------
+
+prodio push
+
 prodio add
---------
+----------
 
 prodio add [type] [value]
 
