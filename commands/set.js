@@ -1,9 +1,10 @@
-var fs = require('fs');
+var support = require('../lib/apisupport');
+//var fs = require('fs');
 
 var set = function(key, value){
-  var values = JSON.parse(fs.readFileSync('./.prodio'));
-  values[key] = value;
-  fs.writeFileSync('./.prodio', JSON.stringify(values, null, '  '));
+  var project = support.getProject();
+  project[key] = value;
+  support.storeProject(project);
 };
 
 set.name = 'set';

@@ -1,5 +1,5 @@
-var Fetcher = require('../lib/apisupport').Fetcher;
-var fs = require('fs');
+var support = require('../lib/apisupport');
+var Fetcher = support.Fetcher;
 
 var find = function(){
   var args = Array.prototype.slice.call(arguments);
@@ -8,7 +8,7 @@ var find = function(){
     return process.exit(1);
   }
   var query = args.join(' ');
-  var values = JSON.parse(fs.readFileSync('./.prodio'));
+  var values = support.getRoot;
   var id = values._id;
   var logif = function(prefix, value){
     if(typeof(value) !== 'undefined'){

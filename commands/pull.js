@@ -1,20 +1,33 @@
-var request = require('request');
+var support = require('../lib/apisupport');
+var Fetcher = support.Fetcher;
 var fs = require('fs');
 
-var pull = function(key, value){
-  var values = JSON.parse(fs.readFileSync('./.prodio'));
+var pull = function(){
+  var values = support.getRoot();
   var id = values._id;
+  var project = false;
+  var block = function(block){
+    if(!project){
+      project = block.root;
+      project.children = block.nodes;
+      return;
+    }
+    project.children = project.children.concat(block.nodes);
+  };
+  var error = function(err){
+    console.error(err.error||err.stack||err);
+    return process.exit(1);
+  };
+  var done = function(){
+    fs.writeFileSync('./.prodio', JSON.stringify(project, null, '  '));
+    console.log('Updated');
+  };
   if(id){
-    delete values.id;
-    return request({
-      method: 'GET',
-      uri: values.host+'/api/v1/project/'+id
-    }, function(err, request, body){
-      var project = JSON.parse(body);
-      project = project[project.root]||project;
-      fs.writeFileSync('./.prodio', JSON.stringify(project, null, '  '));
-      console.log('Updated');
-    });
+    var fetcher = new Fetcher(values.host+'/api/v1/project/'+id+'/tree');
+    fetcher.on('block', block);
+    fetcher.on('error', error);
+    fetcher.on('end', done);
+    return;
   }
   console.log('No Project ID exists.  You must push or init the project first!');
   process.exit(1);

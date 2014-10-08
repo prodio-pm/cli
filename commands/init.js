@@ -3,6 +3,7 @@ var path = require('path');
 var readline = require('readline');
 var semver = require('semver');
 var request = require('request');
+var support = require('apisupport');
 
 var questions = [
   {
@@ -63,7 +64,7 @@ var questions = [
 ];
 
 var done = function(rl, values){
-  fs.writeFileSync('./.prodio', JSON.stringify(values, null, '  '));
+  support.writeProject(values);
   if(!values._id){
     return rl.question('No project ID found, create project now (yes/no)?', function(answer){
       rl.close();
@@ -83,7 +84,7 @@ var done = function(rl, values){
           console.log('Created project ID '+id);
         });
       }
-      console.log('Project not created, you can run prodio init at any time to create it.')
+      console.log('Project not created, you can run prodio init at any time to create it.');
     });
   }
   return rl.question('Sync changes to project server (yes/no)?', function(answer){
@@ -101,9 +102,7 @@ var done = function(rl, values){
           console.error(err.error||err.stack||err);
           return process.exit(1);
         }
-        var project = JSON.parse(body);
-        id = project[project.root]._id;
-        console.log('Project updated');
+        require('./pull')();
       });
     }
   });
@@ -142,7 +141,7 @@ var init = function(projectName, version){
   fs.exists('./.prodio', function(exists){
     var hasVersion = !!semver.valid(version);
     var description = Array.prototype.slice.call(args, hasVersion?2:1).join(' ').trim();
-    var values = exists?JSON.parse(fs.readFileSync('./.prodio')):{
+    var values = exists?support.getRoot():{
       projectName: projectName,
       version: hasVersion?version:'0.0.1',
     };

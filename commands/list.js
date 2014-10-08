@@ -1,10 +1,10 @@
-var Fetcher = require('../lib/apisupport').Fetcher;
+var support = require('../lib/apisupport');
+var Fetcher = support.Fetcher;
 var request = require('request');
-var fs = require('fs');
 
 var list = function(under){
   var args = Array.prototype.slice.call(arguments);
-  var values = JSON.parse(fs.readFileSync('./.prodio'));
+  var values = support.getRoot;
   var id = values._id;
   var tree = false;
   var children = [];
