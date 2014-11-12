@@ -1,3 +1,14 @@
+UNDER SIGNIFICANT REFACTOR!!!
+=============================
+
+The first itteration of Prodio was great, it proved the concept worked.  Now
+its time to build something real and useable out of it.
+
+So, I'm completely refactoring the code to be reusable.  I'm also switching out
+the UI for a React.js based UI.
+
+Basically, for now, use at your own risk or for research :)
+
 Prodio
 ======
 
